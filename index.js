@@ -15,10 +15,10 @@ app.get('/', (req, res) => {
 
 //functions------------------------------------------
 function sortPricingHighToLow(hotel1,hotel2){
-  return hotel2.pricing - hotel1.pricing;
+  return hotel2.price - hotel1.price;
 }
 function sortPricingLowToHigh(hotel1,hotel2){
-  return hotel1.pricing - hotel2.pricing;
+  return hotel1.price - hotel2.price;
 }
 //--------------------------------------------------------
 app.get('/hotels/sort/pricing',(req,res)=>{
