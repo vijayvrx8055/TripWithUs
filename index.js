@@ -69,9 +69,7 @@ app.get('/hotels/sort/reviews',(req,res)=>{
 
 //-------------------------------------------------
 function filterHotelByAmenity(hotelObj,amenity){
-  if(amenity===hotelObj.amenity){
-    return hotelObj;
-  }
+  return amenity===hotelObj.amenity
 }
 app.get('/hotels/filter/amenity',(req,res)=>{
   let amenity = req.query.amenity;
