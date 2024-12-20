@@ -68,15 +68,24 @@ app.get('/hotels/sort/reviews',(req,res)=>{
 });
 
 //-------------------------------------------------
-function filterHotelByAmenity(hotelObj,amenity){
+function filterByAmenity(hotelObj,amenity){
   return hotelObj.amenity.toLowerCase() === amenity.toLowerCase();
 }
 app.get('/hotels/filter/amenity',(req,res)=>{
   let amenity = req.query.amenity;
-  let response = hotels.filter((hotelObj)=>filterHotelByAmenity(hotelObj,amenity),);
+  let response = hotels.filter((hotelObj)=>filterByAmenity(hotelObj,amenity),);
   res.json(response);
 });
 
+//-------------------------------------------------
+function filterByCountry (hotelObj,country){
+  return hotelObj.country.toLowerCase() === country.toLowerCase();
+}
+app.get('/hotels/filter/country',(req,res)=>{
+  let country = req.query.country;
+  let response = hotels.filter((hotelObj)=>filterByCountry (hotelObj,country),);
+  res.json(response);
+});
 //-=============================================
 
 
