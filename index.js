@@ -1,7 +1,7 @@
 const express = require('express');
 const { resolve } = require('path');
 let cors = require('cors');
-let hotels = require('./hotels.json');
+let hotelsList = require('./hotels.json');
 
 const app = express();
 const port = 3000;
@@ -22,13 +22,13 @@ function sortPricingLowToHigh(hotel1,hotel2){
 }
 app.get('/hotels/sort/pricing',(req,res)=>{
   let pricing = req.query.pricing;
-  let hotelsCopy = hotels.slice();
+  let hotelsCopy = hotelsList.slice();
   if(pricing==='low-to-high'){
     hotelsCopy.sort(sortPricingLowToHigh);
   }else if(pricing==='high-to-low'){
     hotelsCopy.sort(sortPricingHighToLow);
   }
-  res.json(hotelsCopy);
+  res.json({ hotels: hotelsCopy });
 });
 
 
@@ -41,13 +41,13 @@ function sortRatingLowToHigh(hotel1,hotel2){
 }
 app.get('/hotels/sort/rating',(req,res)=>{
   let rating = req.query.rating ;
-  let hotelsCopy = hotels.slice();
+  let hotelsCopy = hotelsList.slice();
   if(rating==='low-to-high'){
     hotelsCopy.sort(sortRatingLowToHigh);
   }else if(rating==='high-to-low'){
     hotelsCopy.sort(sortRatingHighToLow);
   }
-  res.json(hotelsCopy);
+  res.json({ hotels: hotelsCopy });
 });
 //-----------------------------------------
 function sortReviewsMostToLeast(hotel1,hotel2){
@@ -58,13 +58,13 @@ function sortReviewsLeastToMost(hotel1,hotel2){
 }
 app.get('/hotels/sort/reviews',(req,res)=>{
   let reviews  = req.query.reviews  ;
-  let hotelsCopy = hotels.slice();
+  let hotelsCopy = hotelsList.slice();
   if(reviews ==='least-to-most'){
     hotelsCopy.sort(sortReviewsLeastToMost);
   }else if(reviews ==='most-to-least'){
     hotelsCopy.sort(sortReviewsMostToLeast);
   }
-  res.json(hotelsCopy);
+  res.json({ hotels: hotelsCopy });
 });
 
 //-------------------------------------------------
@@ -73,8 +73,8 @@ function filterByAmenity(hotelObj,amenity){
 }
 app.get('/hotels/filter/amenity',(req,res)=>{
   let amenity = req.query.amenity;
-  let response = hotels.filter((hotelObj)=>filterByAmenity(hotelObj,amenity),);
-  res.json(response);
+  let response = hotelsList.filter((hotelObj)=>filterByAmenity(hotelObj,amenity),);
+  res.json({ hotels: response });
 });
 
 //-------------------------------------------------
@@ -83,8 +83,8 @@ function filterByCountry (hotelObj,country){
 }
 app.get('/hotels/filter/country',(req,res)=>{
   let country = req.query.country;
-  let response = hotels.filter((hotelObj)=>filterByCountry (hotelObj,country),);
-  res.json(response);
+  let response = hotelsList.filter((hotelObj)=>filterByCountry (hotelObj,country),);
+  res.json({ hotels: response });
 });
 
 //-------------------------------------------------
@@ -93,13 +93,13 @@ function filterByCategory (hotelObj,category){
 }
 app.get('/hotels/filter/category',(req,res)=>{
   let category = req.query.category;
-  let response = hotels.filter((hotelObj)=>filterByCategory (hotelObj,category),);
-  res.json(response);
+  let response = hotelsList.filter((hotelObj)=>filterByCategory (hotelObj,category),);
+  res.json({ hotels: response });
 });
 
 //------------------------------------------
 app.get('/hotels',(req,res)=>{
-  res.json(hotels);
+  res.json({ hotels: hotelsList });
 });
 //-=============================================
 
