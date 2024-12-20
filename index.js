@@ -96,6 +96,11 @@ app.get('/hotels/filter/category',(req,res)=>{
   let response = hotels.filter((hotelObj)=>filterByCategory (hotelObj,category),);
   res.json(response);
 });
+
+//------------------------------------------
+app.get('/hotels',(req,res)=>{
+  res.json(hotels);
+});
 //-=============================================
 
 
