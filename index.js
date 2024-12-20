@@ -86,6 +86,16 @@ app.get('/hotels/filter/country',(req,res)=>{
   let response = hotels.filter((hotelObj)=>filterByCountry (hotelObj,country),);
   res.json(response);
 });
+
+//-------------------------------------------------
+function filterByCategory (hotelObj,category){
+  return hotelObj.category.toLowerCase() === category.toLowerCase();
+}
+app.get('/hotels/filter/category',(req,res)=>{
+  let category = req.query.category;
+  let response = hotels.filter((hotelObj)=>filterByCategory (hotelObj,category),);
+  res.json(response);
+});
 //-=============================================
 
 
