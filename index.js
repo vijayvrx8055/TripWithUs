@@ -1,7 +1,7 @@
 const express = require('express');
 const { resolve } = require('path');
 let cors = require('cors');
-let hotels = require('./hotels');
+let hotels = require('./hotels.json');
 
 const app = express();
 const port = 3000;
@@ -24,13 +24,14 @@ function sortPricingLowToHigh(hotel1,hotel2){
 app.get('/hotels/sort/pricing',(req,res)=>{
   let pricing = req.query.pricing;
   let hotelsCopy = hotels.slice();
-  if(pricing==="low-to-high"){
+  if(pricing==='low-to-high'){
+    console.log('asc');
     hotelsCopy.sort(sortPricingLowToHigh);
-  }else if(pricing==="high-to-low"){
+  }else if(pricing==='high-to-low'){
+    console.log('desc');
     hotelsCopy.sort(sortPricingHighToLow);
   }
   res.json(hotelsCopy);
-  
 });
 
 
