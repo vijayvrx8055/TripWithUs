@@ -69,11 +69,11 @@ app.get('/hotels/sort/reviews',(req,res)=>{
 
 //-------------------------------------------------
 function filterHotelByAmenity(hotelObj,amenity){
-  return amenity===hotelObj.amenity
+  return hotelObj.amenity.toLowerCase() === amenity.toLowerCase();
 }
 app.get('/hotels/filter/amenity',(req,res)=>{
   let amenity = req.query.amenity;
-  let response = hotels.filter((hotelObj)=>filterHotelByAmenity(hotelObj,amenity));
+  let response = hotels.filter((hotelObj)=>filterHotelByAmenity(hotelObj,amenity),);
   res.json(response);
 });
 
