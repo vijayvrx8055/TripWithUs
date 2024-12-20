@@ -27,11 +27,13 @@ app.get('/hotels/sort/pricing',(req,res)=>{
   if(pricing==='low-to-high'){
     console.log('asc');
     hotelsCopy.sort(sortPricingLowToHigh);
+    res.json(hotelsCopy);
   }else if(pricing==='high-to-low'){
     console.log('desc');
     hotelsCopy.sort(sortPricingHighToLow);
+    res.json(hotelsCopy);
   }
-  res.json(hotelsCopy);
+  
 });
 
 
