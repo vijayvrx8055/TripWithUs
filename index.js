@@ -46,7 +46,7 @@ app.get('/hotels/sort/rating',(req,res)=>{
   let hotelsCopy = hotels.slice();
   if(rating==='low-to-high'){
     hotelsCopy.sort(sortRatingLowToHigh);
-  }else if(pricing==='high-to-low'){
+  }else if(rating==='high-to-low'){
     hotelsCopy.sort(sortRatingHighToLow);
   }
   res.json(hotelsCopy);
