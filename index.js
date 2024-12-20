@@ -67,6 +67,18 @@ app.get('/hotels/sort/reviews',(req,res)=>{
   res.json(hotelsCopy);
 });
 
+//-------------------------------------------------
+function filterHotelByAmenity(hotelObj,amenity){
+  if(amenity===hotelObj.amenity){
+    return hotelObj;
+  }
+}
+app.get('/hotels/filter/amenity',(req,res)=>{
+  let amenity = req.query.amenity;
+  let response = hotels.filter((hotelObj)=>filterHotelByAmenity(hotelObj,amenity));
+  res.json(response);
+});
+
 //-=============================================
 
 
